@@ -1,31 +1,57 @@
-var currentChart;
+document.getElementById('renderBtn').addEventListener('click', checkCountryCode);
+//Empty the canvas when clicked?
 
-//When the button is clicked), run the function 'fetchData'.
-document.getElementById('renderBtn').addEventListener('click', fetchData);
-
-async function fetchData() {
-    var countryCode = document.getElementById('country').value;
-    const indicatorCode = 'SP.POP.TOTL';
-    const baseUrl = 'https://api.worldbank.org/v2/country/';
-    const url = baseUrl + countryCode + '/indicator/' + indicatorCode + '?format=json';
-    console.log('Fetching data from URL: ' + url);
-
-    var response = await fetch(url);
-
-    if (response.status == 200) {
-        var fetchedData = await response.json();
-        console.log(fetchedData);
-
-        var data = getValues(fetchedData);
-        var labels = getLabels(fetchedData);
-        var countryName = getCountryName(fetchedData);
-        renderChart(data, labels, countryName);
+function checkCountryCode() {
+    let countryInput = document.getElementById('country');
+    let canvas = document.getElementById("myChart");
+    if (!countryInput.checkValidity()) {
+        document.getElementById("error").innerHTML = "Please check the country code format. Valid example: USA";
+    } else {
+        document.getElementById("error").innerHTML = "";
+        fetchData();
     }
 }
 
+async function fetchData() {
+    let countryCode = document.getElementById('country').value;
+    let indicatorCode = document.getElementById('indicators').value;
+    const baseUrl = 'https://api.worldbank.org/v2/country/';
+    //API default format is XML
+    //Fetch since 1960 in JSON format
+    const url = baseUrl + countryCode + '/indicator/' + indicatorCode + '?per_page=60' + '&format=json';
+    console.log('Fetching data from URL: ' + url);
+
+    try {
+        const response = await fetch(url);
+        //Throw an error when the response is not OK => proceeds directly to the catch
+        if (!response.ok) {
+            console.log(response.statusText);
+            throw new Error('Network error.');
+        }
+        else if (response.status == 200) {
+            let fetchedData = await response.json();
+            console.log(fetchedData);
+
+            if (fetchedData[0].message) {
+                throw (fetchedData[0].message[0].value);
+            }
+
+            let data = getValues(fetchedData);
+            let labels = getLabels(fetchedData);
+            let countryName = getCountryName(fetchedData);
+            let indicatorName = getIndicatorName(fetchedData);
+            renderChart(data, labels, countryName, indicatorName);
+        }
+    } catch (err) {
+        console.log(err);
+        renderError('Population data could not be retrieved. ' + err);
+    }
+
+}
+
 function getValues(data) {
-    var vals = data[1].sort((a, b) => a.date - b.date).map(item => item.value);
-    return vals;
+    var values = data[1].sort((a, b) => a.date - b.date).map(item => item.value);
+    return values;
 }
 
 function getLabels(data) {
@@ -38,7 +64,18 @@ function getCountryName(data) {
     return countryName;
 }
 
-function renderChart(data, labels, countryName) {
+function getIndicatorName(data) {
+    var indicatorName = data[1][0].indicator.value;
+    return indicatorName;
+}
+
+function renderError(message) {
+    document.getElementById("error").innerHTML = message;
+}
+
+var currentChart;
+
+function renderChart(data, labels, countryName, indicatorName) {
     var ctx = document.getElementById('myChart').getContext('2d');
 
     if (currentChart) {
@@ -51,10 +88,10 @@ function renderChart(data, labels, countryName) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Population, ' + countryName,
+                label: indicatorName + ', ' + countryName,
                 data: data,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(256, 0, 0, 0.2)',
+                borderColor: '#5cd65c',
+                backgroundColor: '#b3ffb3',
             }]
         },
         options: {

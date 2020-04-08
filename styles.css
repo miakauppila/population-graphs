@@ -1,6 +1,15 @@
+p {
+    margin-bottom: 10px;
+}
+label {
+    margin-bottom: 0px;
+}
 .content {
     text-align: center;
 }
 .container {
     width: 75vw;
+}
+footer {
+    text-align: center;
 }
