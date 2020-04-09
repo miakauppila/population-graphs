@@ -3,51 +3,53 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Population graph app</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="./styles.css">
   <script defer src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
   <script defer src='./myChart.js'></script>
+
+  <title>Population graph app</title>
 </head>
 
 <body>
   <div class='content'>
     <h1>Population graphs</h1>
+    <div class="inputs">
+      <p>
+        <label for="country">
+          Enter a three letter
+          <a href="https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes" target="_blank">country code:</a></label>
+        <input class="textinput" placeholder="Country" type="text" name="country" id="country" size="13" maxlength="3"
+          title="Accepted format: 'ABC'" pattern="[a-zA-Z]{3}" required />
+      </p>
+      <label for=" indicators">Choose an indicator:</label>
+      <select id="indicators">
+        <option value="SP.POP.TOTL">Total population</option>
+        <option value="EN.URB.LCTY">Population in largest city</option>
+        <option value="SP.POP.0014.TO.ZS">Population ages 0-14</option>
+        <option value="SP.POP.1564.TO.ZS">Population ages 15-64</option>
+        <option value="SP.POP.65UP.TO.ZS">Population ages > 65</option>
+      </select>
+    </div>
     <p>
-      <label for="country">
-        Enter a three letter
-        <a href="https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes" target="_blank">country code</a></label>
-      <input class="textinput" placeholder="Country" type="text" name="country" id="country" size="13" maxlength="3"
-        title="Accepted format: 'ABC'" pattern="[a-zA-Z]{3}" />
-    </p>
-    <label for=" indicators">Choose an indicator:</label>
-    <select id="indicators">
-      <option value="SP.POP.TOTL">Total population</option>
-      <option value="EN.URB.LCTY">Population in largest city</option>
-      <option value="SP.POP.0014.TO.ZS">Population ages 0-14</option>
-      <option value="SP.POP.1564.TO.ZS">Population ages 15-64</option>
-      <option value="SP.POP.65UP.TO.ZS">Population ages 65 and above</option>
-    </select>
-    <p>
-      <button class="button" id="renderBtn">Render population graph</button>
+      <button type="button" class="btn btn-outline-dark" id="renderBtn">Render population graph</button>
     </p>
 
     <p id="error"></p>
 
-    <script>
-
-    </script>
-
     <div class='container'>
       <canvas id='myChart'></canvas>
     </div>
-
   </div>
 </body>
 
 <footer>
-  Population data from World Bank. World Data License : CC BY-4.0
+  <div class="py-2 bg-dark text-white-50">
+    <small>Population data from World Bank. World Data License : CC BY-4.0</small>
+  </div>
 </footer>
 
 </html>

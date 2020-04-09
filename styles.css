@@ -1,15 +1,28 @@
 p {
     margin-bottom: 10px;
-}
+ }
 label {
     margin-bottom: 0px;
+    width: 240px;
 }
 .content {
     text-align: center;
 }
+.inputs {
+    margin: auto;
+    width: 550px;
+    text-align: left;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .container {
-    width: 75vw;
+    width: 60vw;
 }
 footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     text-align: center;
-}
+ }
