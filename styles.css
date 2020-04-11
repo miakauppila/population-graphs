@@ -1,23 +1,38 @@
+body {
+    background-color: #d9d9d9;
+    /* background-color: rgba(255, 166, 0, 0.418); */
+}
+@media only screen and (max-width: 400px) {
+h1 {
+    font-size: 2.0rem;
+}
+}
 p {
     margin-bottom: 10px;
  }
+ #inputs {
+    margin: auto;
+    max-width: 550px;
+    text-align: left;
+    padding-left: 90px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 label {
-    margin-bottom: 0px;
-    width: 240px;
+    margin-right: 10px;
 }
 .content {
     text-align: center;
 }
-.inputs {
+#chartContainer {
     margin: auto;
-    width: 550px;
-    text-align: left;
-    padding-left: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    position: relative;
+    width: 50vmax;
+    /* width: 100vh;
+    max-width: 100vw;  */
 }
-.container {
-    width: 60vw;
+button {
+    margin-bottom: 10px;
 }
 footer {
     position: fixed;

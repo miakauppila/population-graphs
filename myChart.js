@@ -7,9 +7,11 @@ function checkCountryCode() {
     let countryInput = document.getElementById('country');
     if (!countryInput.checkValidity()) {
         document.getElementById("error").innerHTML = "Please check the country code format. Valid example: USA";
+        document.getElementById("chartContainer").style.backgroundColor = '#d9d9d9';
     }
     else {
         document.getElementById("error").innerHTML = "";
+        document.getElementById("chartContainer").style.backgroundColor = '#d9d9d9';
         fetchData();
     }
 }
@@ -32,7 +34,7 @@ async function fetchData() {
 
     try {
         const response = await fetch(url);
-        //Throw an error when the response is not OK => proceeds directly to the catch
+        //Throw an error when the response is not OK => proceeds directly to catch
         if (!response.ok) {
             console.log(response.statusText);
             throw new Error('Network error.');
@@ -50,6 +52,7 @@ async function fetchData() {
             let countryName = getCountryName(fetchedData);
             let indicatorName = getIndicatorName(fetchedData);
             renderChart(data, labels, countryName, indicatorName);
+            document.getElementById("chartContainer").style.backgroundColor = 'white';
         }
     } catch (err) {
         console.log(err);
@@ -58,12 +61,18 @@ async function fetchData() {
 }
 
 function getValues(data) {
-    let values = data[1].sort((a, b) => a.date - b.date).map(item => item.value);
+    let valuesRaw = data[1].sort((a, b) => a.date - b.date).map(item => item.value);
+    //round pergentages to 2 decimals
+    let values = valuesRaw.map(item => Math.round(item * 100) / 100);
+    //remove 2019 null value
+    values.pop();
     return values;
 }
 
 function getLabels(data) {
     let labels = data[1].sort((a, b) => a.date - b.date).map(item => item.date);
+    //remove 2019 from labels
+    labels.pop();
     return labels;
 }
 
@@ -99,11 +108,27 @@ function renderChart(data, labels, countryName, indicatorName) {
         options: {
             scales: {
                 yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Millions"
+                    },
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            if (parseInt(value) >= 1000000) {
+                                return value / 1000000;
+                            } else {
+                                return value;
+                            }
+                        }
                     }
                 }]
             }
         }
     });
+
+    if (indicatorName.includes("ages")) {
+        currentChart.options.scales.yAxes[0].scaleLabel.labelString = "Percentage";
+        currentChart.update();
+    }
 }

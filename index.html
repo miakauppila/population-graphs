@@ -17,12 +17,12 @@
 <body>
   <div class='content'>
     <h1>Population graphs</h1>
-    <div class="inputs">
+    <div class="container" id="inputs">
       <p>
         <label for="country">
           Enter a three letter
           <a href="https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes" target="_blank">country code:</a></label>
-        <input class="textinput" placeholder="Country" type="text" name="country" id="country" size="13" maxlength="3"
+        <input type="text" name="country" id="country" size="10" placeholder="Country" maxlength="3"
           title="Accepted format: 'ABC'" pattern="[a-zA-Z]{3}" required />
       </p>
       <label for=" indicators">Choose an indicator:</label>
@@ -40,7 +40,7 @@
 
     <p id="error"></p>
 
-    <div class='container'>
+    <div id='chartContainer'>
       <canvas id='myChart'></canvas>
     </div>
   </div>
