@@ -115,7 +115,7 @@ function renderChart(data, labels, countryName, indicatorName) {
                     ticks: {
                         beginAtZero: true,
                         callback: function (value, index, values) {
-                            if (parseInt(value) >= 1000000) {
+                            if (parseInt(value) >= 100) {
                                 return value / 1000000;
                             } else {
                                 return value;
