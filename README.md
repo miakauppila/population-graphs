@@ -1,21 +1,33 @@
 # Population Graphs
 
-## Front-end application for retrieving and visualizing World Bank population data  
-- The user inputs a three letter country code (ISO3 format) and chooses the desired indicator.
-- The application fetches data from World Bank API.  
-- The data is displayed in a graph created with Chart.js.
+## Front-end application for retrieving and visualizing World Bank population data
 
-### This project was created during a MOOC in April 2020. Afterwards I modified my version:  
-- The app now shows data since 1960 until 2018 (data for 2019 is not yet available).
-- The user can choose the type of graph to show. There are five different indicators available:
-    - Total population
-    - Population in largest city
-    - Population ages 0-14
-    - Population ages 15-64
-    - Population ages > 65
-- New indicators were added to API calls.  
-- A function for checking the country code validity was added as well as a function for clearing the chart.  
-- In case of invalid country code, the old chart is removed from the screen. 
-- The graph now displays a label for the Y-scale. The label changes depending on the chosen indicator ('Millions' or 'Percentage').
-- The graph also shows tickmarks in millions for the indicators 'Total population' and 'Population in largest city'. 
-- Background color and other style changes were made.
+- The user chooses a country and selects the desired indicator.
+- The application fetches population data from [World Bank Open Data](https://data.worldbank.org/).
+- The data is displayed in a graph created with Chart.js.
+- Country metadata incl. flag is retrieved from [REST Countries](https://restcountries.eu/).
+
+## Try the app:
+
+### This project was created during the #mimmitkoodaa MOOC by Sympa in 2020. Afterwards I modified my application.
+
+- The app shows data since 1960 until 2019.
+- The user can choose the country from a dropdown list.
+- The user can choose the graph to show. There are five different indicators available:
+  - Total population
+  - Population in largest city
+  - Population ages 0-14
+  - Population ages 15-64
+  - Population ages > 65
+- New indicators were added to API calls.
+- A function for checking the user input validity and for clearing the chart was added.
+- The graph displays a label for the Y-scale. The label changes depending on the chosen indicator ('Millions' or 'Percentage'). Applicable tickmarks are also shown.
+- Country flag, native name and region are shown above the graph.
+
+## How to install & run
+
+Download the files and open the file index.html using a browser.
+
+## World Bank data
+
+Population data is retrieved from the World Bank (CC BY 4.0). For more information see [About the Indicators API Documentation](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation).
