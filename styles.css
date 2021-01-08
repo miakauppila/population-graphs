@@ -18,12 +18,14 @@ body {
   footer {
     font-size: smaller;
   }
+  .countryDetails {
+    margin: 10px;
+  }
 }
 
 .content {
   text-align: center;
-  padding: 0 0 20px 0;
-  padding-bottom: 20px;
+  padding: 0 5px 10px 5px;
 }
 
 h1 {
@@ -36,7 +38,6 @@ h1 {
 p {
   margin-bottom: 5px;
 }
-
 #inputs {
   margin: auto;
   max-width: 550px;
@@ -45,6 +46,7 @@ p {
 }
 label {
   margin-right: 10px;
+  margin-top: 3px;
   margin-bottom: 3px;
 }
 
