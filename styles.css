@@ -1,0 +1,97 @@
+:root {
+  --bg-color: #eeeeee;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  background-color: var(--bg-color);
+  /* Margin bottom set by footer height */
+  margin-bottom: 40px;
+}
+@media only screen and (max-width: 425px) {
+  h1 {
+    font-size: 1.5em;
+  }
+  .rightCol,
+  footer {
+    font-size: smaller;
+  }
+  .countryDetails {
+    margin: 10px;
+  }
+}
+
+.content {
+  text-align: center;
+  padding: 0 5px 10px 5px;
+}
+
+h1 {
+  margin-bottom: 0px;
+  color: black;
+  font-weight: 700;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white;
+}
+p {
+  margin-bottom: 5px;
+}
+#inputs {
+  margin: auto;
+  max-width: 550px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+label {
+  margin-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+#chartContainer {
+  margin: auto;
+  position: relative;
+  width: 100vh;
+  max-width: 100vw;
+}
+
+.error {
+  color: red;
+  font-size: 16px;
+}
+
+.countryDetails {
+  display: flex;
+}
+#countryName,
+#region {
+  margin: 0;
+}
+.leftCol {
+  text-align: right;
+  flex: 50%;
+  padding: 8px;
+}
+.rightCol {
+  text-align: left;
+  flex: 50%;
+  padding-left: 5px;
+}
+#flag {
+  width: 10vh;
+  height: auto;
+  border: 1px solid black;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 40px;
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 8px;
+}
