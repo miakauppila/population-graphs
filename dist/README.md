@@ -1,13 +1,14 @@
 # Population Graphs
 
-## Front-end application for retrieving and visualizing World Bank population data
+## Front-end application for visualizing World Bank population data
 
 - The user chooses a country and selects the desired indicator.
 - The application fetches population data from [World Bank Open Data](https://data.worldbank.org/).
 - The data is displayed in a graph created with Chart.js.
 - Country metadata incl. flag is retrieved from [REST Countries](https://restcountries.eu/).
 
-## Try the app:
+## Try the app: 
+https://miakauppila.github.io/population-graphs
 
 ### This project was created during the #mimmitkoodaa MOOC by Sympa in 2020. Afterwards I modified my application.
 
@@ -26,7 +27,7 @@
 
 ## How to install & run
 
-Download the files and open the file index.html using a browser.
+Download the files in the dist folder and open the file index.html using a browser.
 
 ## World Bank data
 
